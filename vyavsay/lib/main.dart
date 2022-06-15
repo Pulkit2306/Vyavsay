@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 // import 'package:vyavsay/alerts/alert5.dart';
 // import 'package:vyavsay/alerts/alert6.dart';
 // import 'package:vyavsay/alerts/alert7.dart';
-import 'package:vyavsay/qr/contactless_pay.dart';
+// import 'package:vyavsay/qr/contactless_pay.dart';
+import 'package:vyavsay/qr/online_apnao.dart';
 // import 'package:vyavsay/alerts/alert1.dart';
 // import 'package:vyavsay/alerts/alert2.dart';
 // import 'package:vyavsay/alerts/alert3.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home:  const Alert1(),
-      home:  const ContactlessPay(),
+      home:  const OnlineApnao(),
     );
   }
 }

@@ -3,47 +3,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MyButtonUnfills extends StatefulWidget {
+class OnlineApnaoButton extends StatefulWidget {
   final void Function()? onPressed;
   final String text;
 
   // ignore: use_key_in_widget_constructors
-  const MyButtonUnfills({
+  const OnlineApnaoButton({
     required this.onPressed,
     required this.text,
     
   });
 
   @override
-  State<MyButtonUnfills> createState() => _MyButtonState();
+  State<OnlineApnaoButton> createState() => _MyButtonState();
 }
 
-class _MyButtonState extends State<MyButtonUnfills> {
+class _MyButtonState extends State<OnlineApnaoButton> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(360, 800));
     return MaterialButton(
       onPressed: widget.onPressed,
-      height: 40,
+      height: 55,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
       
       // padding: const EdgeInsets.symmetric(horizontal: 4,),
       child: Ink(
-        // decoration: BoxDecoration(
-        //   // color:  Color(0xFF134DA5).withOpacity(0.93),
-        //   borderRadius: BorderRadius.circular(8),
-        // ),
+        decoration: BoxDecoration(
+          color:  Color(0xFFF1A157),
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: Container(
-          height: 30,
-          width: 70.w,
+          height: 50,
+          width: 330.w,
           alignment: Alignment.center,
           child: Text(
             widget.text,
             style: const TextStyle(
-              color: Colors.black,
-              fontSize: 16,
+              color: Colors.white,
+              fontSize: 22,
               fontWeight: FontWeight.w500,
               fontFamily: "Nunito",
             ),
