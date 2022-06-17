@@ -163,6 +163,7 @@ class Welcome extends StatelessWidget {
                     enableSuggestions: true,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
+                      border: InputBorder.none,
                       prefixText: "+91",
                       prefixStyle: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -177,7 +178,11 @@ class Welcome extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          WelcomeButton(onPressed: () {}, text: "Continue"),
+          SizedBox(
+            height: 40.h,
+            width: 250.w,
+            child: WelcomeButton(onPressed: () {}, text: "Continue"),
+          ),
           SizedBox(
             height: 30,
           ),
@@ -263,8 +268,10 @@ class Welcome extends StatelessWidget {
                 height: 3.h,
               ),
               Image(
-                  image: AssetImage(
-                      "Assets/welcomeScreens/Terms & Conditions Privacy Policies.png")),
+                image: AssetImage(
+                  "Assets/welcomeScreens/Terms & Conditions Privacy Policies.png",
+                ),
+              ),
             ],
           ),
         ],

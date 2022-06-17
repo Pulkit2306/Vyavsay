@@ -36,8 +36,8 @@ class _MyButtonState extends State<WelcomeButton> {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Container(
-          height: 40,
-          width: 250.w,
+          height: double.infinity,
+          width: double.infinity,
           alignment: Alignment.center,
           child: Text(
             widget.text,
