@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vyavsay/qr/digital_india.dart';
+import 'package:vyavsay/welcome/welcome.dart';
+// import 'package:vyavsay/qr/digital_india.dart';
 // import 'package:vyavsay/alerts/alert5.dart';
 // import 'package:vyavsay/alerts/alert6.dart';
 // import 'package:vyavsay/alerts/alert7.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home:  const Alert1(),
-      home:  const DigitalIndia(),
+      home:  const Welcome(),
     );
   }
 }
