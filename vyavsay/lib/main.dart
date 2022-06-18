@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vyavsay/welcome/name_page.dart';
-// import 'package:vyavsay/welcome/otp_page.dart';
+// import 'package:vyavsay/welcome/name_page.dart';
+import 'package:vyavsay/welcome/otp_page.dart';
 // import 'package:vyavsay/welcome/welcome.dart';
 // import 'package:vyavsay/qr/digital_india.dart';
 // import 'package:vyavsay/alerts/alert5.dart';
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home:  const Alert1(),
-      home:  const NamePage(),
+      home:  const OTPPage(),
     );
   }
 }
