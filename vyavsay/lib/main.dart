@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vyavsay/name/name.dart';
 import 'package:vyavsay/splash_page.dart';
 // import 'package:vyavsay/sridhar.dart';
 // import 'package:vyavsay/sridhar1.dart';
