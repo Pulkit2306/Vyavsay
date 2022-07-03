@@ -1,8 +1,14 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 
 final List<String> imgList = [
   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -23,6 +29,15 @@ class WhatsApp extends StatefulWidget {
 class _WhatsAppState extends State<WhatsApp> {
   int currentIndex = 1;
   int total = imgList.length;
+  int index = 2;
+
+  Widget imageSlide() {
+    return Image.network(
+      imgList[index % imgList.length],
+      fit: BoxFit.cover,
+    );
+  }
+  final controller = ScreenshotController();
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(360, 800));
@@ -99,9 +114,8 @@ class _WhatsAppState extends State<WhatsApp> {
                     child: SizedBox(
                       height: 177.h,
                       width: 99.w,
-                      child: Image.network(
-                        imgList[index % imgList.length],
-                        fit: BoxFit.cover,
+                      child: InkWell(
+                        child: imageSlide(),
                       ),
                     ),
                   );
@@ -116,14 +130,20 @@ class _WhatsAppState extends State<WhatsApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // for (var i = 0; i < imgList.length;)
-                  Text("$currentIndex/$total"),
+                Text("$currentIndex/$total"),
               ],
             ),
             SizedBox(
               height: 150.h,
             ),
             MaterialButton(
-              onPressed: () {},
+              onPressed: () async {
+                final image = await controller.captureFromWidget(
+                  imageSlide(),
+                );
+
+                saveAndShare(image);
+              },
               child: Container(
                 height: 47.h,
                 width: 161.w,
@@ -148,4 +168,13 @@ class _WhatsAppState extends State<WhatsApp> {
       ),
     );
   }
+
+  Future saveAndShare(Uint8List bytes) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final image = File('${directory.path}/flutter.png');
+    image.writeAsBytesSync(bytes);
+
+    await Share.shareFiles([image.path]);
+  }
+
 }

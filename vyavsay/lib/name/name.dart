@@ -84,6 +84,7 @@ class Name extends StatelessWidget {
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              physics: BouncingScrollPhysics(),
               child: Row(
                 children: [
                   Container(
@@ -153,6 +154,7 @@ class Name extends StatelessWidget {
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
+              physics: BouncingScrollPhysics(),
               child: Row(
                 children: [
                   Container(
