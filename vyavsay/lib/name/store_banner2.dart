@@ -13,9 +13,16 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
 ];
 
-class WhatsApp extends StatelessWidget {
+class WhatsApp extends StatefulWidget {
   const WhatsApp({Key? key}) : super(key: key);
 
+  @override
+  State<WhatsApp> createState() => _WhatsAppState();
+}
+
+class _WhatsAppState extends State<WhatsApp> {
+  int currentIndex = 1;
+  int total = imgList.length;
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(360, 800));
@@ -51,36 +58,67 @@ class WhatsApp extends StatelessWidget {
         ),
         child: Column(
           children: [
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 177.h,
-                viewportFraction: 1,
-                initialPage: 0,
-                enableInfiniteScroll: true,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                scrollDirection: Axis.horizontal,
-              ),
-              items: imgList
-                  .map(
-                    (item) => Container(
-                      child: Center(
-                        child: Image.network(
-                          item,
-                          fit: BoxFit.cover,
-                          width: 99.w,
-                          height: 177.h,
-                        ),
+            // CarouselSlider(
+            //   options: CarouselOptions(
+            //     height: 177.h,
+            //     viewportFraction: 1,
+            //     initialPage: 0,
+            //     enableInfiniteScroll: true,
+            //     autoPlay: true,
+            //     autoPlayInterval: Duration(seconds: 3),
+            //     autoPlayAnimationDuration: Duration(milliseconds: 800),
+            //     scrollDirection: Axis.horizontal,
+            //   ),
+            //   items: imgList
+            //       .map(
+            //         (item) => Container(
+            //           child: Center(
+            //             child: Image.network(
+            //               item,
+            //               fit: BoxFit.cover,
+            //               width: 99.w,
+            //               height: 177.h,
+            //             ),
+            //           ),
+            //         ),
+            //       )
+            //       .toList(),
+            // ),
+            SizedBox(
+              height: 177.h,
+              width: 99.w,
+              child: PageView.builder(
+                onPageChanged: (index) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 18.0.w),
+                    child: SizedBox(
+                      height: 177.h,
+                      width: 99.w,
+                      child: Image.network(
+                        imgList[index % imgList.length],
+                        fit: BoxFit.cover,
                       ),
                     ),
-                  )
-                  .toList(),
+                  );
+                },
+              ),
             ),
             SizedBox(
               height: 10.h,
             ),
-            Text("1/100"),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // for (var i = 0; i < imgList.length;)
+                  Text("$currentIndex/$total"),
+              ],
+            ),
             SizedBox(
               height: 150.h,
             ),

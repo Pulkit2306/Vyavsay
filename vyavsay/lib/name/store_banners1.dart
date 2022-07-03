@@ -13,9 +13,16 @@ final List<String> imgList = [
   'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
 ];
 
-class StoreBanners extends StatelessWidget {
+class StoreBanners extends StatefulWidget {
   const StoreBanners({Key? key}) : super(key: key);
 
+  @override
+  State<StoreBanners> createState() => _StoreBannersState();
+}
+
+class _StoreBannersState extends State<StoreBanners> {
+  int currentIndex = 1;
+  int total = imgList.length;
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(360, 800));
@@ -45,35 +52,71 @@ class StoreBanners extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 18.0.w, vertical: 28.h,),
+        padding: EdgeInsets.symmetric(
+          horizontal: 18.0.w,
+          vertical: 28.h,
+        ),
         child: Column(
           children: [
-            CarouselSlider(
-                options: CarouselOptions(
-                  height: 108.h,
-                  viewportFraction: 1,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  scrollDirection: Axis.horizontal,
-                ),
-                items: imgList
-                    .map((item) => Container(
-                          child: Center(
-                              child: Image.network(
-                            item,
-                            fit: BoxFit.cover,
-                            width: 197.w,
-                            height: 108.h,
-                          ),),
-                        ),)
-                    .toList(),
+            // CarouselSlider(
+            //     options: CarouselOptions(
+            //       height: 108.h,
+            //       viewportFraction: 1,
+            //       initialPage: 0,
+            //       enableInfiniteScroll: true,
+            //       autoPlay: true,
+            //       autoPlayInterval: Duration(seconds: 3),
+            //       autoPlayAnimationDuration: Duration(milliseconds: 800),
+            //       scrollDirection: Axis.horizontal,
+            //     ),
+            //     items: imgList
+            //         .map((item) => Container(
+            //               child: Center(
+            //                   child: Image.network(
+            //                 item,
+            //                 fit: BoxFit.cover,
+            //                 width: 197.w,
+            //                 height: 108.h,
+            //               ),),
+            //             ),)
+            //         .toList(),
+            //   ),
+            SizedBox(
+              height: 108.h,
+              width: 197.w,
+              child: PageView.builder(
+                onPageChanged: (index) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 18.0.w),
+                    child: SizedBox(
+                      height: 108.h,
+                      width: 197.w,
+                      child: Image.network(
+                        imgList[index % imgList.length],
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
               ),
-              SizedBox(height:10.h,),
-              Text("1/100"),
-              SizedBox(
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // for (var i = 0; i < imgList.length; i++)
+                  Text("$currentIndex/$total"),
+              ],
+            ),
+            SizedBox(
               height: 150.h,
             ),
             MaterialButton(
@@ -101,5 +144,9 @@ class StoreBanners extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget buildIndicator(bool isSelected) {
+    return Container();
   }
 }
