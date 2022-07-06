@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vyavsay/name/name.dart';
 import 'package:vyavsay/splash_page.dart';
+import 'package:vyavsay/theheft/theheft.dart';
 // import 'package:vyavsay/sridhar.dart';
 // import 'package:vyavsay/sridhar1.dart';
 // import 'package:vyavsay/welcome/name_page.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home:  const Alert1(),
-      home:  const Name(),
+      home:  const TheHeft(),
     );
   }
 }

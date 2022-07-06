@@ -2,8 +2,6 @@
 
 import 'dart:io';
 import 'dart:typed_data';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
@@ -44,129 +42,131 @@ class _StoreBannersState extends State<StoreBanners> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(360, 800));
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(80.h),
-        child: AppBar(
-          leading: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 20,
-                ),
-              ],
-            ),
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.black,
-            ),
-          ),
-          elevation: 0,
-          backgroundColor: const Color(0xFF134DA5),
-          centerTitle: true,
-          title: const Text("Store Banners"),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 18.0.w,
-          vertical: 28.h,
-        ),
-        child: Column(
-          children: [
-            // CarouselSlider(
-            //     options: CarouselOptions(
-            //       height: 108.h,
-            //       viewportFraction: 1,
-            //       initialPage: 0,
-            //       enableInfiniteScroll: true,
-            //       autoPlay: true,
-            //       autoPlayInterval: Duration(seconds: 3),
-            //       autoPlayAnimationDuration: Duration(milliseconds: 800),
-            //       scrollDirection: Axis.horizontal,
-            //     ),
-            //     items: imgList
-            //         .map((item) => Container(
-            //               child: Center(
-            //                   child: Image.network(
-            //                 item,
-            //                 fit: BoxFit.cover,
-            //                 width: 197.w,
-            //                 height: 108.h,
-            //               ),),
-            //             ),)
-            //         .toList(),
-            //   ),
-            SizedBox(
-              height: 108.h,
-              width: 197.w,
-              child: PageView.builder(
-                onPageChanged: (index) {
-                  setState(() {
-                    currentIndex = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 18.0.w),
-                    child: SizedBox(
-                      height: 108.h,
-                      width: 197.w,
-                      child: InkWell(
-                        child: imageCapture(),
-                      ),
-                    ),
-                  );
-                },
+    return 
+    Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(80.h),
+          child: AppBar(
+            leading: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 20,
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
               ),
             ),
-            SizedBox(
-              height: 10.h,
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // for (var i = 0; i < imgList.length; i++)
-                Text("$currentIndex/$total"),
-              ],
-            ),
-            SizedBox(
-              height: 150.h,
-            ),
-            MaterialButton(
-              onPressed: () async {
-                final image = await controller.captureFromWidget(
-                  imageCapture(),
-                );
-
-                saveAndShare(image);
-              },
-              child: Container(
-                height: 47.h,
-                width: 161.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Color(0xFF134DA5),
+            elevation: 0,
+            backgroundColor: const Color(0xFF134DA5),
+            centerTitle: true,
+            title: const Text("Store Banners"),
+          ),
+        ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: 18.0.w,
+            vertical: 28.h,
+          ),
+          child: Column(
+            children: [
+              // CarouselSlider(
+              //     options: CarouselOptions(
+              //       height: 108.h,
+              //       viewportFraction: 1,
+              //       initialPage: 0,
+              //       enableInfiniteScroll: true,
+              //       autoPlay: true,
+              //       autoPlayInterval: Duration(seconds: 3),
+              //       autoPlayAnimationDuration: Duration(milliseconds: 800),
+              //       scrollDirection: Axis.horizontal,
+              //     ),
+              //     items: imgList
+              //         .map((item) => Container(
+              //               child: Center(
+              //                   child: Image.network(
+              //                 item,
+              //                 fit: BoxFit.cover,
+              //                 width: 197.w,
+              //                 height: 108.h,
+              //               ),),
+              //             ),)
+              //         .toList(),
+              //   ),
+              SizedBox(
+                height: 108.h,
+                width: 197.w,
+                child: PageView.builder(
+                  onPageChanged: (index) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 18.0.w),
+                      child: SizedBox(
+                        height: 108.h,
+                        width: 197.w,
+                        child: InkWell(
+                          child: imageCapture(),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-                child: Center(
-                  child: Text(
-                    "Share",
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+    
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // for (var i = 0; i < imgList.length; i++)
+                  Text("$currentIndex/$total"),
+                ],
+              ),
+              SizedBox(
+                height: 150.h,
+              ),
+              MaterialButton(
+                onPressed: () async {
+                  final image = await controller.captureFromWidget(
+                    imageCapture(),
+                  );
+    
+                  saveAndShare(image);
+                },
+                child: Container(
+                  height: 47.h,
+                  width: 161.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xFF134DA5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "Share",
+                      style: TextStyle(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    
   }
 
   Future saveAndShare(Uint8List bytes) async {
