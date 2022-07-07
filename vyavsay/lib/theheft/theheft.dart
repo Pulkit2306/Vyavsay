@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vyavsay/theheft/description.dart';
 import 'package:vyavsay/theheft/tile.dart';
 
 class TheHeft extends StatelessWidget {
@@ -51,7 +52,17 @@ class TheHeft extends StatelessWidget {
                 childAspectRatio: 0.5,
               ),
               itemBuilder: (context, index) {
-                return Tile();
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Description(),
+                      ),
+                    );
+                  },
+                  child: Tile(),
+                );
               },
             ),
           ),
