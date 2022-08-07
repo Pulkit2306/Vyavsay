@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vyavsay/layout/layout_groceries.dart';
+import 'package:vyavsay/layout/layout_home.dart';
 import 'package:vyavsay/name/name.dart';
 import 'package:vyavsay/splash_page.dart';
 import 'package:vyavsay/theheft/theheft.dart';
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home:  const Alert1(),
-      home:  const TheHeft(),
+      home:  const Name(),
     );
   }
 }
